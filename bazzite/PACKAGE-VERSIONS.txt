@@ -1,9 +1,11 @@
 RetroArch: 1.22.2, Linux x86_64 AppImage, Git 69a4f0e
 AppImage SHA-256: 794b0f65d4efa918e2ad05cac34b444a4f3207ed6c74834b7c14eb5fb15e1cc4
-Source package: https://buildbot.libretro.com/stable/1.22.2/linux/x86_64/RetroArch.7z
+Binary package: https://buildbot.libretro.com/stable/1.22.2/linux/x86_64/RetroArch.7z
+Corresponding source: https://github.com/libretro/RetroArch/tree/v1.22.2
 
 FinalBurn Neo libretro core: official x86_64 nightly retrieved 2026-09-21
 fbneo_libretro.so SHA-256: a154a08d0f97ff1c66e6ec22a5c209854f31eb2ed7d831b2cb4c0101d48a2448
-Source package: https://buildbot.libretro.com/nightly/linux/x86_64/latest/fbneo_libretro.so.zip
+Binary package: https://buildbot.libretro.com/nightly/linux/x86_64/latest/fbneo_libretro.so.zip
+Upstream source: https://github.com/finalburnneo/FBNeo
 
 ROM is not included. ddsom.zip requires no separate CPS-2 BIOS.
