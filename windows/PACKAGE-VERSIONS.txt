@@ -1,0 +1,10 @@
+zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
+‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×RetroArch: 1.22.2, Windows x86_64, Git 69a4f0e
+retroarch.exe SHA-256: 81c11b6f24932bf7918f05eee8928035bff3887335fd2a081507c75e9d94d06a
+Source package: https://buildbot.libretro.com/stable/1.22.2/windows/x86_64/RetroArch.7z
+
+FinalBurn Neo libretro core: official x86_64 nightly retrieved 2026-09-21
+fbneo_libretro.dll SHA-256: 0a92f3b61dba68b34df0a93afe1b24b98debb3c25dfe63bf21c02034fdfa1179
+Source package: https://buildbot.libretro.com/nightly/windows/x86_64/latest/fbneo_libretro.dll.zip
+
+ROM is not included. expected-rom-sha256.txt contains the approved ddsom.zip baseline hash.

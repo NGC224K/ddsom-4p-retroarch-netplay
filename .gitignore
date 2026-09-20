@@ -1,0 +1,33 @@
+zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
+‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×# Copyrighted game content
+**/roms/*.zip
+**/*.key
+**/system/**
+
+# Runtime and private data
+**/logs/**
+*.log
+*.state*
+*.srm
+
+# Packaged third-party binaries and large bundles
+*.AppImage
+*.exe
+*.dll
+*.so
+*.zip
+*.7z
+*.tar.gz
+**/assets/**
+**/autoconfig/**
+**/shaders/**
+
+# Local build/output directories
+outputs/
+releases/
+work/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.tmp
