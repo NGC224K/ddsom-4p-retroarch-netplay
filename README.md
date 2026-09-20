@@ -10,6 +10,7 @@ Portable Bazzite and Windows launch/configuration files for four-player *Dungeon
 - You must supply a legally obtained `ddsom.zip` yourself.
 - The package expects the approved ROM SHA-256 documented in [`docs/PROJECT-TECHNICAL-REFERENCE.md`](docs/PROJECT-TECHNICAL-REFERENCE.md).
 - RetroArch, FinalBurn Neo, assets, controller profiles, and shader bundles are distributed by their respective projects and remain subject to their own licenses.
+- Redistribution details, upstream source links, and third-party notices are listed in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 
 ## Features
 
@@ -33,6 +34,7 @@ Large third-party binaries and data bundles are intentionally not committed to G
 
 - [Project technical reference](docs/PROJECT-TECHNICAL-REFERENCE.md)
 - [Offline Korean first-use guide](docs/FIRST-USE-GUIDE.html)
+- [Third-party software and data notices](THIRD-PARTY-NOTICES.md)
 
 ## Network summary
 
