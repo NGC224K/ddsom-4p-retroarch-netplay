@@ -1,5 +1,4 @@
-zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
-‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×RetroArch: 1.22.2, Linux x86_64 AppImage, Git 69a4f0e
+RetroArch: 1.22.2, Linux x86_64 AppImage, Git 69a4f0e
 AppImage SHA-256: 794b0f65d4efa918e2ad05cac34b444a4f3207ed6c74834b7c14eb5fb15e1cc4
 Source package: https://buildbot.libretro.com/stable/1.22.2/linux/x86_64/RetroArch.7z
 

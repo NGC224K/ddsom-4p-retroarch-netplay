@@ -1,5 +1,4 @@
-z�謺v)�++��B�y�rا��,��^���
-��vz-r��y�N��ڶ*'��iz���ם# D&D Shadow over Mystara 4인 온라인 패키지
+# D&D Shadow over Mystara 4인 온라인 패키지
 
 ## 프로젝트 기술 명세·운영·유지보수 문서
 

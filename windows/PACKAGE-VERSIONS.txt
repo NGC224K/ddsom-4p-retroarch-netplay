@@ -1,5 +1,4 @@
-zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
-‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×RetroArch: 1.22.2, Windows x86_64, Git 69a4f0e
+RetroArch: 1.22.2, Windows x86_64, Git 69a4f0e
 retroarch.exe SHA-256: 81c11b6f24932bf7918f05eee8928035bff3887335fd2a081507c75e9d94d06a
 Source package: https://buildbot.libretro.com/stable/1.22.2/windows/x86_64/RetroArch.7z
 

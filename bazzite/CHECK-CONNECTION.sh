@@ -1,5 +1,4 @@
-zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
-‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -u
 PORT=55435
 

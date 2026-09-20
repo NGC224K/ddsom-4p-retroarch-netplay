@@ -1,5 +1,4 @@
-zºè¬ºv)à³++¢‹B¢yÞrØ§‚Ú,ÊË^™»¬
-‹¥vz-r‰çyËN¥êÚ¶*'ž‹iz¹¢¶×@echo off
+@echo off
 chcp 65001 >nul
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"

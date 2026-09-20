@@ -1,5 +1,4 @@
-zºè¬ºv)à³++¢‹B¢yŞrØ§‚Ú,ÊË^™»¬
-‹¥vz-r‰çyËN¥êÚ¶*'‹iz¹¢¶×#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -u
 cd "$(dirname "$0")"
 win_dir="${1:-../DND-SOM-4P-Windows}"
