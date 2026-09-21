@@ -9,3 +9,5 @@ Binary package: https://buildbot.libretro.com/nightly/windows/x86_64/latest/fbne
 Upstream source: https://github.com/finalburnneo/FBNeo
 
 ROM is not included. expected-rom-sha256.txt contains the approved ddsom.zip baseline hash.
+Windows launcher scripts: Korean CP949 with CRLF line endings (v3 patch).
+Windows JOIN, shader, and controls were user-tested; Windows HOST is not yet verified.

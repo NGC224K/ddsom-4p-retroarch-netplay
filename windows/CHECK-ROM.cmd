@@ -1,37 +1,42 @@
 @echo off
-chcp 65001 >nul
+chcp 949 >nul
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
+set "ROM_PATH=%~dp0roms\ddsom.zip"
 if not exist "roms\ddsom.zip" (
-  echo [ì‹¤íŒ¨] roms\ddsom.zip íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤.
+  echo [½ÇÆĞ] roms\ddsom.zip ÆÄÀÏÀÌ ¾ø½À´Ï´Ù.
   exit /b 2
 )
-powershell.exe -NoLogo -NoProfile -NonInteractive -Command "Add-Type -AssemblyName System.IO.Compression.FileSystem; $z=[IO.Compression.ZipFile]::OpenRead($args[0]); try { if (-not ($z.Entries | Where-Object { $_.FullName -ieq 'ddsom.key' })) { exit 3 } } finally { $z.Dispose() }" "roms\ddsom.zip"
-if errorlevel 3 (
-  echo [ROM ë¶ˆì™„ì „] ddsom.zip ì•ˆì— ddsom.keyê°€ ì—†ìŠµë‹ˆë‹¤.
-  echo ì´ê²ƒì€ ë³„ë„ BIOSê°€ ì•„ë‹ˆë¼ í˜„ì¬ FBNeoìš© ddsom ROM ì„¸íŠ¸ì˜ ì¼ë¶€ì…ë‹ˆë‹¤.
-  echo í•„ìš”í•œ íŒŒì¼: ddsom.key / CRC-32 541e425d
-  exit /b 3
-)
-for /f "usebackq delims=" %%H in (`powershell.exe -NoLogo -NoProfile -NonInteractive -Command "(Get-FileHash -Algorithm SHA256 -LiteralPath $args[0]).Hash" "roms\ddsom.zip"`) do if not defined ACTUAL set "ACTUAL=%%H"
+powershell.exe -NoLogo -NoProfile -NonInteractive -Command "$ErrorActionPreference='Stop'; try { Add-Type -AssemblyName System.IO.Compression.FileSystem; $z=[IO.Compression.ZipFile]::OpenRead($env:ROM_PATH); try { if (-not ($z.Entries | Where-Object { $_.FullName -ieq 'ddsom.key' })) { exit 3 } } finally { $z.Dispose() } } catch { Write-Error $_; exit 4 }"
+if errorlevel 4 goto zip_error
+if errorlevel 3 goto key_missing
+set "ACTUAL="
+for /f "delims=" %%H in ('powershell.exe -NoLogo -NoProfile -NonInteractive -Command "(Get-FileHash -Algorithm SHA256 -LiteralPath $env:ROM_PATH).Hash"') do if not defined ACTUAL set "ACTUAL=%%H"
 if not defined ACTUAL (
-  echo [ì‹¤íŒ¨] Windowsì˜ SHA-256 ê²€ì‚¬ ê¸°ëŠ¥ì„ ì‹¤í–‰í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
+  echo [½ÇÆĞ] ROMÀÇ SHA-256 °ªÀ» °è»êÇÏÁö ¸øÇß½À´Ï´Ù.
   exit /b 3
 )
 set "EXPECTED="
 if exist "config\expected-rom-sha256.txt" set /p EXPECTED=<"config\expected-rom-sha256.txt"
 set "EXPECTED=!EXPECTED: =!"
-echo.
 echo ROM SHA-256: !ACTUAL!
 if not defined EXPECTED (
-  echo [ì£¼ì˜] ê¸°ì¤€ í•´ì‹œê°€ ì•„ì§ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
-  echo ë°©ì¥ì´ ì´ ê°’ì„ ì°¸ê°€ì ëª¨ë‘ì™€ ë¹„êµí•´ì•¼ í•©ë‹ˆë‹¤.
+  echo [ÁÖÀÇ] ±âÁØ ÇØ½Ã°¡ ¾ø½À´Ï´Ù. ¹æÀå°ú Á÷Á¢ ºñ±³ÇÏ¼¼¿ä.
   exit /b 0
 )
 if /i "!ACTUAL!"=="!EXPECTED!" (
-  echo [í†µê³¼] ë°©ì¥ì´ ë“±ë¡í•œ ROMê³¼ ì •í™•íˆ ê°™ìŠµë‹ˆë‹¤.
+  echo [Åë°ú] ROM ÇØ½Ã°¡ ±âÁØ°ª°ú ÀÏÄ¡ÇÕ´Ï´Ù.
   exit /b 0
 )
-echo [ë¶ˆì¼ì¹˜] ë°©ì¥ì˜ ROMê³¼ ë‹¤ë¦…ë‹ˆë‹¤.
-echo ê¸°ì¤€ SHA-256: !EXPECTED!
+echo [ºÒÀÏÄ¡] ¹æÀåÀÇ ROM°ú ´Ù¸¨´Ï´Ù.
+echo ±âÁØ SHA-256: !EXPECTED!
 exit /b 1
+
+:key_missing
+echo [ROM ºÒ¿ÏÀü] ddsom.zip ¾È¿¡ ddsom.key°¡ ¾ø½À´Ï´Ù.
+echo ÀÌ ÆÄÀÏÀº º°µµ BIOS°¡ ¾Æ´Ï¶ó ROM ¼¼Æ® ³»ºÎ ÆÄÀÏÀÔ´Ï´Ù.
+exit /b 3
+
+:zip_error
+echo [½ÇÆĞ] ROM ZIPÀ» ¿­ ¼ö ¾ø½À´Ï´Ù. ÆÄÀÏ °æ·Î¿Í ZIP ¼Õ»ó ¿©ºÎ¸¦ È®ÀÎÇÏ¼¼¿ä.
+exit /b 4

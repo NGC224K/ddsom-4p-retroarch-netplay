@@ -1,26 +1,26 @@
 @echo off
-chcp 65001 >nul
+chcp 949 >nul
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
-title Dungeons & Dragons SOM 4P
+title DND SOM 4P
 
 :menu
 cls
 echo ================================================================
-echo   D^&D: Shadow over Mystara - 4ì¸ ì˜¨ë¼ì¸ ë„ìš°ë¯¸
+echo   DND Shadow over Mystara - 4ÀÎ ¿Â¶óÀÎ µµ¿ì¹Ì
 echo ================================================================
+echo   [1] ¹æ Âü°¡ - °íÈ­Áú
+echo   [2] ¹æ ¸¸µé±â - °íÈ­Áú
+echo   [3] Ã³À½»ç¿ë¼³¸í¼­ ¿­±â
+echo   [4] ROM °Ë»ç
+echo   [5] RetroArch¸¸ ¿­±â - ÆĞµå/Å° ¼³Á¤
+echo   [6] ¹æ Âü°¡ - ±×·¡ÇÈ È£È¯ ¸ğµå
+echo   [7] ¹æ ¸¸µé±â - ±×·¡ÇÈ È£È¯ ¸ğµå
+echo   [8] RetroArch °­Á¦ Á¾·á
+echo   [0] ´İ±â
 echo.
-echo   [1] ë°© ì°¸ê°€ (JOIN / ê³ í™”ì§ˆ)
-echo   [2] ë°© ë§Œë“¤ê¸° (HOST / ê³ í™”ì§ˆ)
-echo   [3] ì²˜ìŒì‚¬ìš©ì„¤ëª…ì„œ ì—´ê¸°
-echo   [4] ROM ê²€ì‚¬
-echo   [5] RetroArchë§Œ ì—´ê¸° (íŒ¨ë“œ/í‚¤ ì„¤ì •)
-echo   [6] ë°© ì°¸ê°€ (ê·¸ë˜í”½ í˜¸í™˜ ëª¨ë“œ)
-echo   [7] ë°© ë§Œë“¤ê¸° (ê·¸ë˜í”½ í˜¸í™˜ ëª¨ë“œ)
-echo   [8] RetroArch ê°•ì œ ì¢…ë£Œ
-echo   [0] ë‹«ê¸°
-echo.
-set /p CHOICE=ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ê³  Enter: 
+set "CHOICE="
+set /p "CHOICE=¹øÈ£¸¦ ÀÔ·ÂÇÏ°í Enter: "
 if "%CHOICE%"=="1" goto join_high
 if "%CHOICE%"=="2" goto host_high
 if "%CHOICE%"=="3" goto open_guide
@@ -47,7 +47,7 @@ goto menu
 
 :kill_retroarch
 taskkill /IM retroarch.exe /T /F >nul 2>&1
-echo RetroArch ì¢…ë£Œ ëª…ë ¹ì„ ì‹¤í–‰í–ˆìŠµë‹ˆë‹¤.
+echo RetroArch Á¾·á ¸í·ÉÀ» ½ÇÇàÇß½À´Ï´Ù.
 pause
 goto menu
 
@@ -72,72 +72,65 @@ call :set_video_compat
 goto host
 
 :join
-if not exist "%~dp0roms\ddsom.zip" (
-  echo.
-  echo [ì˜¤ë¥˜] roms í´ë”ì— ddsom.zipì´ ì—†ìŠµë‹ˆë‹¤.
-  echo ì²˜ìŒì‚¬ìš©ì„¤ëª…ì„œë¥¼ ì—´ì–´ 1ë‹¨ê³„ë¥¼ ë”°ë¼ í•˜ì„¸ìš”.
-  pause
-  goto menu
-)
+if not exist "%~dp0roms\ddsom.zip" goto rom_missing
 call "%~dp0CHECK-ROM.cmd"
-if errorlevel 1 (
-  echo.
-  echo ì•ˆì „ì„ ìœ„í•´ ì‹¤í–‰ì„ ì¤‘ë‹¨í–ˆìŠµë‹ˆë‹¤. ë°©ì¥ì—ê²Œ í•´ì‹œê°’ì„ í™•ì¸í•˜ì„¸ìš”.
-  pause
-  goto menu
-)
+if errorlevel 1 goto rom_failed
 echo.
-set /p HOST=ë°©ì¥ì—ê²Œ ë°›ì€ ì£¼ì†Œ(IP ë˜ëŠ” ë„ë©”ì¸)ë¥¼ ì…ë ¥: 
+set "HOST="
+set /p "HOST=¹æÀå¿¡°Ô ¹ŞÀº ÁÖ¼Ò(IP ¶Ç´Â µµ¸ŞÀÎ): "
 if not defined HOST goto menu
-set /p NICK=ê²Œì„ì—ì„œ ì‚¬ìš©í•  ì´ë¦„ì„ ì…ë ¥: 
+set "NICK="
+set /p "NICK=°ÔÀÓ¿¡¼­ »ç¿ëÇÒ ÀÌ¸§ [Friend]: "
 if not defined NICK set "NICK=Friend"
-echo.
-echo ì ‘ì† ì¤‘... Windows ë°©í™”ë²½ ì§ˆë¬¸ì´ ë‚˜ì˜¤ë©´ 'ì•¡ì„¸ìŠ¤ í—ˆìš©'ì„ ëˆ„ë¥´ì„¸ìš”.
-echo ì ‘ì† ìˆœì„œ: ì²« ì¹œêµ¬=P2, ë‘˜ì§¸=P3, ì…‹ì§¸=P4
-if defined NO_SHADER (
-  "%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="" --connect="%HOST%" --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-join.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
-) else (
-  "%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="%~dp0shaders\shaders_slang\presets\scalefx-plus-smoothing\scalefx+rAA+aa.slangp" --connect="%HOST%" --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-join.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
-)
-echo.
-echo RetroArchê°€ ë‹«í˜”ìŠµë‹ˆë‹¤. ë¬¸ì œê°€ ìˆì—ˆë‹¤ë©´ logs\last-join.logë¥¼ ë°©ì¥ì—ê²Œ ë³´ë‚´ì„¸ìš”.
+if not exist "%~dp0logs" mkdir "%~dp0logs"
+echo Á¢¼Ó ÁßÀÔ´Ï´Ù. Windows ¹æÈ­º® Áú¹®ÀÌ ³ª¿À¸é ¾×¼¼½º¸¦ Çã¿ëÇÏ¼¼¿ä.
+echo Á¢¼Ó ¼ø¼­´ë·Î Ã¹ Ä£±¸=P2, µÑÂ°=P3, ¼ÂÂ°=P4ÀÔ´Ï´Ù.
+if defined NO_SHADER goto join_compat_launch
+"%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="%~dp0shaders\shaders_slang\presets\scalefx-plus-smoothing\scalefx+rAA+aa.slangp" --connect="%HOST%" --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-join.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
+goto join_done
+
+:join_compat_launch
+"%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="" --connect="%HOST%" --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-join.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
+
+:join_done
+echo RetroArch°¡ ´İÇû½À´Ï´Ù. ¿À·ù°¡ ÀÖÀ¸¸é logs\last-join.log¸¦ ¹æÀå¿¡°Ô º¸³»¼¼¿ä.
 pause
 goto menu
 
 :host
-if not exist "%~dp0roms\ddsom.zip" (
-  echo.
-  echo [ì˜¤ë¥˜] roms í´ë”ì— ddsom.zipì´ ì—†ìŠµë‹ˆë‹¤.
-  pause
-  goto menu
-)
+if not exist "%~dp0roms\ddsom.zip" goto rom_missing
 call "%~dp0CHECK-ROM.cmd"
-if errorlevel 1 (
-  echo ì•ˆì „ì„ ìœ„í•´ ì‹¤í–‰ì„ ì¤‘ë‹¨í–ˆìŠµë‹ˆë‹¤.
-  pause
-  goto menu
-)
+if errorlevel 1 goto rom_failed
 set "PUBLIC_IP="
-for /f "usebackq delims=" %%I in (`powershell.exe -NoLogo -NoProfile -NonInteractive -Command "try { (Invoke-RestMethod -Uri 'https://api.ipify.org' -TimeoutSec 8).Trim() } catch {}"`) do if not defined PUBLIC_IP set "PUBLIC_IP=%%I"
+for /f "delims=" %%I in ('powershell.exe -NoLogo -NoProfile -NonInteractive -Command "try { (Invoke-RestMethod -Uri 'https://api.ipify.org' -TimeoutSec 8).Trim() } catch {}"') do if not defined PUBLIC_IP set "PUBLIC_IP=%%I"
 echo.
-if defined PUBLIC_IP (
-  echo ê³µì¸ IPv4: !PUBLIC_IP!
-  echo ì ‘ì† í¬íŠ¸: TCP 55435
-  echo ì¹œêµ¬ì—ê²Œ ì•Œë ¤ì¤„ ì£¼ì†Œ: !PUBLIC_IP!
-) else (
-  echo [ì•ˆë‚´] ê³µì¸ IPv4ë¥¼ ìë™ í™•ì¸í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤. í¬íŠ¸ëŠ” TCP 55435ì…ë‹ˆë‹¤.
-)
-echo.
-set /p NICK=ë°©ì— í‘œì‹œí•  ì´ë¦„ì„ ì…ë ¥ [Host]: 
+if defined PUBLIC_IP echo °øÀÎ IPv4: !PUBLIC_IP!
+if not defined PUBLIC_IP echo °øÀÎ IPv4 ÀÚµ¿ È®ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.
+echo Á¢¼Ó Æ÷Æ®: TCP 55435
+set "NICK="
+set /p "NICK=¹æ¿¡ Ç¥½ÃÇÒ ÀÌ¸§ [Host]: "
 if not defined NICK set "NICK=Host"
-echo Windows ë°©í™”ë²½ ì°½ì´ ë‚˜ì˜¤ë©´ ê°œì¸ ë„¤íŠ¸ì›Œí¬ ì•¡ì„¸ìŠ¤ë¥¼ í—ˆìš©í•˜ì„¸ìš”.
-if defined NO_SHADER (
-  "%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="" --host --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-host.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
-) else (
-  "%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="%~dp0shaders\shaders_slang\presets\scalefx-plus-smoothing\scalefx+rAA+aa.slangp" --host --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-host.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
-)
-echo.
-echo í˜¸ìŠ¤íŠ¸ê°€ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
+if not exist "%~dp0logs" mkdir "%~dp0logs"
+echo Windows ¹æÈ­º® Áú¹®ÀÌ ³ª¿À¸é °³ÀÎ ³×Æ®¿öÅ© ¾×¼¼½º¸¦ Çã¿ëÇÏ¼¼¿ä.
+if defined NO_SHADER goto host_compat_launch
+"%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="%~dp0shaders\shaders_slang\presets\scalefx-plus-smoothing\scalefx+rAA+aa.slangp" --host --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-host.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
+goto host_done
+
+:host_compat_launch
+"%~dp0retroarch.exe" --config "%~dp0config\retroarch.cfg" --set-shader="" --host --port=55435 --nick="%NICK%" --verbose --log-file "%~dp0logs\last-host.log" -L "%~dp0cores\fbneo_libretro.dll" "%~dp0roms\ddsom.zip"
+
+:host_done
+echo È£½ºÆ®°¡ Á¾·áµÇ¾ú½À´Ï´Ù.
+pause
+goto menu
+
+:rom_missing
+echo roms\ddsom.zipÀÌ ¾ø½À´Ï´Ù. ÇÕ¹ıÀûÀ¸·Î º¸À¯ÇÑ ROM ZIPÀ» ³ÖÀ¸¼¼¿ä.
+pause
+goto menu
+
+:rom_failed
+echo ROM °Ë»ç°¡ ½ÇÆĞÇß½À´Ï´Ù. SHA-256 °ªÀ» ¹æÀå°ú ºñ±³ÇÏ¼¼¿ä.
 pause
 goto menu
 

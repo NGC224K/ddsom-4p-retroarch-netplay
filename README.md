@@ -1,6 +1,8 @@
 # D&D Shadow over Mystara 4P RetroArch Netplay
 
-Portable Bazzite and Windows launch/configuration files for four-player *Dungeons & Dragons: Shadow over Mystara* netplay using RetroArch and FinalBurn Neo.
+한국어 사용자를 위한 *Dungeons & Dragons: Shadow over Mystara* 4인 RetroArch + FinalBurn Neo 온라인 플레이 포터블 설정입니다. Bazzite와 Windows 패키지를 제공합니다.
+
+Korean-language portable setup for four-player *Dungeons & Dragons: Shadow over Mystara* netplay on Bazzite and Windows.
 
 > Unofficial community project. Not affiliated with or endorsed by Capcom, Libretro, RetroArch, or FinalBurn Neo.
 
@@ -21,6 +23,13 @@ Portable Bazzite and Windows launch/configuration files for four-player *Dungeon
 - High-quality ScaleFX shader mode and no-shader compatibility mode.
 - Offline Korean first-use guide.
 - Controller autoconfiguration support in packaged builds.
+
+## Windows test status
+
+The Korean Windows launcher patch uses CP949-encoded, CRLF-terminated batch
+files. A Windows user confirmed that JOIN, game display, the default shader,
+and controls work with this patch. Windows HOST has not yet been tested by
+that user. Bazzite behavior is unchanged.
 
 ## Repository contents
 
