@@ -45,6 +45,19 @@ Large third-party binaries and data bundles are intentionally not committed to G
 - [Offline Korean first-use guide](docs/FIRST-USE-GUIDE.html)
 - [Third-party software and data notices](THIRD-PARTY-NOTICES.md)
 
+## 게임을 4인 모드로 설정하기
+
+`ddsom.zip`을 다른 지역판 ROM으로 바꿀 필요는 없습니다. *Shadow over Mystara*의 참가 인원은 게임 내부의 캐비닛 설정에서 정합니다. 새로 설치한 패키지에서는 다음을 확인하세요.
+
+1. 게임 실행 중 `F1`을 눌러 `빠른 메뉴 → 코어 옵션 → Diagnostic Input`에서 진단 메뉴 호출 키를 지정합니다.
+2. 게임으로 돌아가 지정한 키를 눌러 게임의 테스트 메뉴를 엽니다.
+3. `CONFIGURATION → SYSTEM → CHUTE TYPE`에서 `4 PLAYERS 4 CHUTES MULTI`를 선택합니다. 이 설정은 실제 게임 화면에서 4인용 타이틀 배치가 나타나는 것을 확인했습니다.
+4. 게임 테스트 메뉴의 `SAVE & EXIT`로 저장하고 게임을 재시작합니다.
+
+타이틀에 `PRESS START`/`INSERT COIN` 자리가 네 개 보이면 4인 캐비닛 설정이 적용된 것입니다. 다만 **온라인 4인 플레이의 최종 확인**은 P3·P4 참가자가 실제로 캐릭터를 선택하고 조작할 수 있는지까지 시험해야 합니다.
+
+`4 CHUTES MULTI`는 플레이어마다 크레딧을 따로 쓰는 방식입니다. P3·P4 크레딧 입력이 불편하다면 `4 PLAYERS 1 CHUTE SINGLE`(공용 크레딧)도 시험할 수 있습니다. 변경 후에는 다시 `SAVE & EXIT`로 저장하세요. ROM 해시 검사나 `retroarch.cfg`를 수정하는 설정이 아닙니다.
+
 ## Network summary
 
 - Protocol: TCP
